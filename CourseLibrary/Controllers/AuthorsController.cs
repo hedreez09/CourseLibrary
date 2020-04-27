@@ -7,6 +7,7 @@ using CourseLibrary.Helpers;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using CourseLibrary.ResourceParameters;
 
 namespace CourseLibrary.Controllers
 {
@@ -31,11 +32,13 @@ namespace CourseLibrary.Controllers
 
 		//To Get list of Authors
 		[HttpGet()]
-		public ActionResult<IEnumerable<AuthorDto>> GetAuthors()
+		[HttpHead]
+		public ActionResult<IEnumerable<AuthorDto>> GetAuthors(
+			[FromQuery] AuthorsResourceParameters authorsResourceParameters)
 		{
-			throw new Exception("Test exception");
 			// Return authors and to do that were turn it from the ICourseLibraryRepository
-			var authorsFromRepo = _courseLibraryRepository.GetAuthors();
+			var authorsFromRepo = 
+				_courseLibraryRepository.GetAuthors(authorsResourceParameters);
 
 
 			//var authors = new  List<AuthorDto>(); //Initializing a dto object 
