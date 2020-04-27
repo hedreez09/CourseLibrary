@@ -13,7 +13,7 @@ namespace CourseLibrary.API.DbContexts
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<Course> Courses { get; set; }
-
+         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // seed the database with dummy data
