@@ -20,6 +20,9 @@ namespace CourseLibrary.Profiles
 				.ForMember(
 				dest => dest.Age, //the GetCurrentAge is gotten from Helpers class
 				opt => opt.MapFrom(src => src.DateOfBirth.GetCurrentAge()));
+			
+			//This help to map Dto with the model entity
+			CreateMap<Models.AuthorForCreationDto, API.Entities.Author>(); 
 		}
 	}
 }

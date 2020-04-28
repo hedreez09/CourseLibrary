@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using CourseLibrary.ResourceParameters;
+using CourseLibrary.Models;
 
 namespace CourseLibrary.Controllers
 {
@@ -32,7 +33,7 @@ namespace CourseLibrary.Controllers
 
 		//To Get list of Authors
 		[HttpGet()]
-		[HttpHead]
+		//[HttpHead]
 		public ActionResult<IEnumerable<AuthorDto>> GetAuthors(
 			[FromQuery] AuthorsResourceParameters authorsResourceParameters)
 		{
@@ -46,18 +47,32 @@ namespace CourseLibrary.Controllers
 		}
 
 		//To get a single author
-		[HttpGet("{authorid}")]
+		[HttpGet("{authorid}", Name = "GetAuthor")]
 		public IActionResult GetAuthor(Guid authorId)
 		{
 			var authorFromRepo = _courseLibraryRepository.GetAuthor(authorId);
 
-			if (authorFromRepo == null)
+			if (authorFromRepo == null) 
 			{
 				return NotFound();
 			}
 
 			return  Ok(_mapper.Map<AuthorDto>(authorFromRepo));
 		} 
+
+		[HttpPost]
+		public ActionResult<AuthorDto> CreateAuthor(AuthorForCreationDto author)
+		 {
+			var authorEntity = _mapper.Map<API.Entities.Author>(author);
+			_courseLibraryRepository.AddAuthor(authorEntity);
+			_courseLibraryRepository.Save(); 
+
+			var authorToReturn = _mapper.Map<AuthorDto>(authorEntity);
+
+
+			return CreatedAtRoute("GetAuthor",
+				new { authorId = authorToReturn.Id }, authorToReturn);
+		}
 
 	}
 }
