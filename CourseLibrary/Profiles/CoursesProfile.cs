@@ -12,8 +12,11 @@ namespace CourseLibrary.Profiles
 		{
 			CreateMap<API.Entities.Course, Models.CourseDto>();
 
-			//mapping Source to Dest(CourseCreatnDto to courrse 
+			//mapping Source to Dest(CourseCreatnDto to courrse)
 			CreateMap<Models.CourseForCreationDto, API.Entities.Course>();
+
+			//mapping courseForUpdateDto(sourse) to a course entity(Destination)
+			CreateMap<Models.CourseForUpdateDto, API.Entities.Course>();
 		}
 
 	}
