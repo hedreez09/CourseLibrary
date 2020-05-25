@@ -1,4 +1,4 @@
-﻿ using CourseLibrary.API.DbContexts;
+﻿using CourseLibrary.API.DbContexts;
 using CourseLibrary.API.Entities;
 using CourseLibrary.ResourceParameters;
 using System;
@@ -11,7 +11,7 @@ namespace CourseLibrary.API.Services
     {
         private readonly CourseLibraryContext _context;
 
-        public CourseLibraryRepository(CourseLibraryContext context )
+        public CourseLibraryRepository(CourseLibraryContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
         }
@@ -35,7 +35,7 @@ namespace CourseLibrary.API.Services
         public void DeleteCourse(Course course)
         {
             _context.Courses.Remove(course);
-        }
+        }   
   
         public Course GetCourse(Guid authorId, Guid courseId)
         {

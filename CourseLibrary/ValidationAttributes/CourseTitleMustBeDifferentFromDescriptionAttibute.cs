@@ -17,7 +17,6 @@ namespace CourseLibrary.ValidationAttributes
 			{
 				return new ValidationResult(ErrorMessage,
 					new[] { nameof(CourseForManipulationDto) });
-
 			}
 			return ValidationResult.Success;
 		}

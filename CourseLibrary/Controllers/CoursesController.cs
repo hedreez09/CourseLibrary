@@ -83,7 +83,7 @@ namespace CourseLibrary.Controllers
 			if (!_courseLibraryRepository.AuthorExists(authorId))
 			{
 				return NotFound();
-			}
+			} 
 
 			var courseForAuthorFromRepo = _courseLibraryRepository.GetCourse(authorId, courseId);
 
@@ -95,9 +95,7 @@ namespace CourseLibrary.Controllers
 
 				_courseLibraryRepository.AddCourse(authorId, courseToAdd);
 
-
 				_courseLibraryRepository.Save();
-
 
 				var courseToReturn = _mapper.Map<CourseDto>(courseToAdd);
 				 
@@ -117,5 +115,7 @@ namespace CourseLibrary.Controllers
 			return NoContent();
 
 		}
+
+
 	}
 }
